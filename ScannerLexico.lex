@@ -22,9 +22,9 @@ import java_cup.runtime.*;
 	  ComplexSymbolFactory symbolFactory;
 	  
 	  private Symbol symbol(int type) {
-		  System.out.println("column: " + yycolumn);
-		  System.out.println("line: " + yyline);
-		return symbolFactory.newSymbol("testing",type);
+		  //System.out.println("column: " + yycolumn);
+		  //System.out.println("line: " + yyline);
+		return symbolFactory.newSymbol("",type,yytext());
 	  }
 	  
 	  private Symbol symbol(int type, Object value) {

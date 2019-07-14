@@ -5,29 +5,25 @@ import javax.xml.stream.XMLStreamWriter;
 import java.io.*;
 
 
-/*parser code {:
-	public Parser(Lexer lex, ComplexSymbolFactory sf) 
-	{
-		super(lex,sf);
-	}
-	public static void main(String args[]) throws Exception
-	{
-		System.out.println("xdxdxd");
-		
-		//ScannerBuffer lexer = new ScannerBuffer(new Lexer(new BufferedReader(new FileReader(args[0])),csf));
-		
-		System.out.println("Ready");
-		
-	}
+parser code {:
 
-:};
-*/
+	OutputWriter out;
+	BinaryGenerator bin; 
+	 
+	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename) {
+		super(lex,sf);
+		
+		out = new OutputWriter(filename);
+		bin = new BinaryGenerator();
+
+	}
+:}
 
 non terminal expression,instruction, parameters, declaration, value, program, parameter;
 terminal separator, operation,immediate, segment, label, string, types, variable, register, tag;
 
 program ::= program expression 
-	| expression
+	| expression 
 	;
 
 expression  ::= instruction 
@@ -49,11 +45,11 @@ parameter   ::= immediate
 	| tag
 	;
 
-declaration ::= label 
+declaration ::= label:l {: System.out.println("Label detectado por cup: " + l);:}
 	| variable types value
 	;
 
-value       ::= string 
+value	::= string 
 	| immediate
 	;
 

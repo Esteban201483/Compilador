@@ -306,9 +306,9 @@ public class Lexer implements java_cup.runtime.Scanner, sym {
 	  ComplexSymbolFactory symbolFactory;
 	  
 	  private Symbol symbol(int type) {
-		  System.out.println("column: " + yycolumn);
-		  System.out.println("line: " + yyline);
-		return symbolFactory.newSymbol("testing",type);
+		  //System.out.println("column: " + yycolumn);
+		  //System.out.println("line: " + yyline);
+		return symbolFactory.newSymbol("",type,yytext());
 	  }
 	  
 	  private Symbol symbol(int type, Object value) {

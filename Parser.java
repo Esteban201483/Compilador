@@ -123,6 +123,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   public int error_sym() {return 1;}
 
 
+
+
+	OutputWriter out;
+	BinaryGenerator bin; 
+	 
+	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename) {
+		super(lex,sf);
+		
+		out = new OutputWriter(filename);
+		bin = new BinaryGenerator();
+
+	}
+
+
 /** Cup generated class to encapsulate user supplied action code.*/
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 class CUP$Parser$actions {
@@ -337,11 +351,11 @@ class CUP$Parser$actions {
           case 13: // declaration ::= label 
             {
                 XMLElement RESULT;
-		Location label0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location label0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object label0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("declaration",0);
+		Location lxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location lxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object l = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 System.out.println("Label detectado por cup: " + l);
+                RESULT = new XMLElement.NonTerminal("declaration",0,new XMLElement.Terminal(lxleft,"l",l,lxright));
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declaration",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
