@@ -2,7 +2,6 @@ import java.util.*;
 import java_cup.runtime.*;
 
 %%
-
 %public
 %class Lexer
 %unicode
@@ -13,27 +12,29 @@ import java_cup.runtime.*;
 %cupdebug
 
 %{
-	public Lexer(java.io.Reader in, ComplexSymbolFactory sf){
+	ComplexSymbolFactory symbolFactory;
+	
+	public Lexer(java.io.Reader in, ComplexSymbolFactory sf)
+	{
 		this(in);
 		symbolFactory = sf;
 	}
 	
-	
-	  ComplexSymbolFactory symbolFactory;
-	  
-	  private Symbol symbol(int type) {
-		  //System.out.println("column: " + yycolumn);
-		  //System.out.println("line: " + yyline);
+	private Symbol symbol(int type) 
+	{
+		//System.out.println("column: " + yycolumn);
+		//System.out.println("line: " + yyline);
 		return symbolFactory.newSymbol("",type,yytext());
-	  }
-	  
-	  private Symbol symbol(int type, Object value) {
+	}
+
+	private Symbol symbol(int type, Object value) 
+	{
 		return symbolFactory.newSymbol("",type);
-	  }
+	}
 %}
 
 %eofval{
-  return symbol(sym.EOF);
+	return symbol(sym.EOF);
 %eofval}
 
 %init{
@@ -41,7 +42,6 @@ import java_cup.runtime.*;
 %init}
 
 %state DATA,CODE
-
 
 string = \"[^\"]*\"
 comment = #(.)*
@@ -55,13 +55,14 @@ segment = ((\.data)|(\.code))
 label = ([a-zA-z][a-zA-Z0-9]*:)
 variable = [a-zA-Z][a-zA-Z0-9]*
 
-operation = (add|addi|jleu|jls|lux|mul|ret|syscall|sw)
+operation = (add|and|andi|addi|call|div|divi|je|jges|jgeu|jgs|jgu|jles|jleu|jls|jlu|jmp|jne|lsb|lsh|lsw|
+			lub|luh|luw|mul|multi|not|noti|or|ori|pop|push|ret|sal|sali|sar|sari|sb|scl|scli|scr|scri|sh|
+			sll|slli|slr|slri|sub|subi|sw|syscall|xor|xori)
 
 %%
 
 <DATA>
 {
-	//{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
 	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
 	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
 	{segment} {
@@ -71,8 +72,6 @@ operation = (add|addi|jleu|jls|lux|mul|ret|syscall|sw)
 				return symbol(sym.segment);}
 				
 	{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
-	//{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
-	//{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
 	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.variable);}
 	{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
 	{comment} {/*Ignores*/}
@@ -85,12 +84,9 @@ operation = (add|addi|jleu|jls|lux|mul|ret|syscall|sw)
 	{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
 	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
 	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
-	//{segment} {System.out.println("Segmento Detectado: " + yytext());return symbol(sym.segment);}
-	//{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
 	{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
 	{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
 	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.tag);}
-	//{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
 	{comment} {/*Ignores*/}
 	{spaces} {/*Ignores*/}
 	{endLine} {/*Ignores*/}
