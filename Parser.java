@@ -267,11 +267,11 @@ class CUP$Parser$actions {
           case 7: // instruction ::= operation 
             {
                 XMLElement RESULT;
-		Location operation0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location operation0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object operation0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("instruction",1);
+		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object op = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 out.writeLine(bin.getOperationBinary((String)op)); 
+                RESULT = new XMLElement.NonTerminal("instruction",1,new XMLElement.Terminal(opxleft,"op",op,opxright));
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruction",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

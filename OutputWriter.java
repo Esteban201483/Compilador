@@ -20,14 +20,18 @@ public class OutputWriter
 	
 	public void writeLine(String newLine)
 	{
+		
 		try
 		{
-			writer.write(newLine);
+			writer.write(newLine + "\n");
+			writer.flush();
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error: file can't be closed");
+			System.out.println("Error: file can't be writed");
 		}
+		
+		
 	}
 	
 	
@@ -36,6 +40,7 @@ public class OutputWriter
 		try
 		{
 			writer.close();
+			System.out.println("File Closed");
 		}
 		catch(Exception e)
 		{

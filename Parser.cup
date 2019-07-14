@@ -33,7 +33,7 @@ expression  ::= instruction
 
 
 instruction ::= operation parameters 
-	| operation
+	| operation: op {: out.writeLine(bin.getOperationBinary((String)op)); :}
 	;
 
 parameters  ::= parameter 
