@@ -8,11 +8,12 @@ import java.io.*;
 parser code {:
 
 	OutputWriter out;
-	BinaryGenerator bin; 
+	BinaryGenerator bin;
+	String actualLine;
 	 
 	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename, BinaryGenerator bg) {
 		super(lex,sf);
-		
+		actualLine = "";
 		out = new OutputWriter(filename);
 		bin = bg;
 
@@ -32,7 +33,7 @@ expression  ::= instruction
 	;
 
 
-instruction ::= operation parameters 
+instruction ::= operation: op parameters {: out.writeLine(bin.getOperationBinary((String)op) + " " + actualLine); actualLine=""; :}
 	| operation: op {: out.writeLine(bin.getOperationBinary((String)op)); :}
 	;
 
@@ -40,9 +41,9 @@ parameters  ::= parameter
 	| parameter:param separator:sep parameters:params
 	;
 
-parameter   ::= immediate 
-	| register:reg {: System.out.println("Binario Registro: " + bin.getRegisterBinary((String)reg)); :}
-	| tag
+parameter   ::= immediate :imm {: actualLine += (bin.convertIntToBinary(Integer.parseInt((String)imm),16) + " "); :}
+	| register:reg {: actualLine += bin.getRegisterBinary((String)reg) + " "; :}
+	| tag:t {: actualLine +=bin.getVariableOffset((String)t) + " "; :}
 	;
 
 declaration ::= label:l {: System.out.println("Label detectado por cup: " + l);:}

@@ -2,24 +2,26 @@ import java.util.HashMap;
 
 public class BinaryGenerator
 {
-	HashMap<String,String> instructions;
-	HashMap<String,Integer> symbolTable;
+	private HashMap<String,String> instructions;
+	private HashMap<String,Integer> symbolTable;
 	
-	int byteCounter; //used to calculate padding in data section and offset when using a variable
-	int stackSize; //Used to calculate directions
-	int memorySize;
+	private int byteCounter; //used to calculate padding in data section and offset when using a variable
+	private int stackSize; //Used to calculate directions
+	private int memorySize;
+	private int registerSize;
 	
 	public BinaryGenerator()
 	{
 		byteCounter = 0;
 		stackSize = 128;
 		memorySize = 32;
+		registerSize = 5;
 		
 		instructions = new HashMap<String,String>();
 		symbolTable = new HashMap<String,Integer>();
 
 		//Fills the instructions
-		instructions.put("add","00000");
+		instructions.put("add","000000");
 		instructions.put("addi","000001");
 		instructions.put("call","110011" + "00000000000000000000000000");
 		instructions.put("ret","110101" + "00000000000000000000000000");
@@ -40,7 +42,7 @@ public class BinaryGenerator
 		String binary = "";
 		int registerID = Integer.parseInt(register.replace("r",""));
 		
-		binary = convertIntToBinary(registerID,6);
+		binary = convertIntToBinary(registerID,registerSize);
 		
 		return binary;
 	}
@@ -115,7 +117,10 @@ public class BinaryGenerator
 	{
 		String offset = "";
 		
-		offset = convertIntToBinary(symbolTable.get(varName),memorySize); 
+		if(symbolTable.containsKey(varName))
+			offset = convertIntToBinary(symbolTable.get(varName),16); 
+		else
+			System.out.println(">>>Warning: Tag:  " + varName + " not found" );
 		
 		return offset;
 	}

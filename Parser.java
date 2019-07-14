@@ -125,11 +125,12 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 	OutputWriter out;
-	BinaryGenerator bin; 
+	BinaryGenerator bin;
+	String actualLine;
 	 
 	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename, BinaryGenerator bg) {
 		super(lex,sf);
-		
+		actualLine = "";
 		out = new OutputWriter(filename);
 		bin = bg;
 
@@ -226,7 +227,10 @@ class CUP$Parser$actions {
           case 6: // instruction ::= operation parameters 
             {
               Object RESULT =null;
-
+		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
+		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
+		Object op = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 out.writeLine(bin.getOperationBinary((String)op) + " " + actualLine); actualLine=""; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruction",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -265,8 +269,7 @@ class CUP$Parser$actions {
 		Location paramsxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location paramsxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		Object params = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		System.out.println("Parametros: param: " + (String)(param)
-		+ " sep: " + (String)(sep) + "params: " + (String)(params));
+
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameters",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -275,7 +278,10 @@ class CUP$Parser$actions {
           case 10: // parameter ::= immediate 
             {
               Object RESULT =null;
-
+		Location immxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location immxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object imm = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 actualLine += (bin.convertIntToBinary(Integer.parseInt((String)imm),16) + " "); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -287,7 +293,7 @@ class CUP$Parser$actions {
 		Location regxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
 		Location regxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
 		Object reg = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 System.out.println("Binario Registro: " + bin.getRegisterBinary((String)reg)); 
+		 actualLine += bin.getRegisterBinary((String)reg) + " "; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -296,7 +302,10 @@ class CUP$Parser$actions {
           case 12: // parameter ::= tag 
             {
               Object RESULT =null;
-
+		Location txleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location txright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object t = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 actualLine +=bin.getVariableOffset((String)t) + " "; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
