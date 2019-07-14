@@ -1,0 +1,37 @@
+import java_cup.runtime.*;
+import java_cup.runtime.XMLElement;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.*;
+
+
+/*parser code {:
+	public Parser(Lexer lex, ComplexSymbolFactory sf) 
+	{
+		super(lex,sf);
+	}
+	public static void main(String args[]) throws Exception
+	{
+		System.out.println("xdxdxd");
+		
+		//ScannerBuffer lexer = new ScannerBuffer(new Lexer(new BufferedReader(new FileReader(args[0])),csf));
+		
+		System.out.println("Ready");
+		
+	}
+
+:};
+*/
+
+non terminal expression,instruction, parameters, declaration, value, program, parameter;
+terminal separator, operation,immediate, segment, label, string, types, variable, register;
+
+program ::= program expression | expression;
+expression  ::= instruction | declaration | segment;
+instruction ::= operation parameters | operation;
+parameters  ::= parameter | parameter separator parameters;
+parameter   ::= immediate | register;
+declaration ::= label | variable types value;
+
+value       ::= string | immediate;
+

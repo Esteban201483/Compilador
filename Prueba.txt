@@ -1,0 +1,42 @@
+#------------------------------------------------------------------------------
+# Autor: Kevin Jiménez (B59218)
+# Suma los primeros N numeros, y el resultado lo imprime en pantalla
+#------------------------------------------------------------------------------
+# Datos
+
+#.data
+    msj1      .ascii "¿Cuantos números desea sumar?\n"
+    respuesta .ascii "El resultado es "
+#------------------------------------------------------------------------------
+# Codigo 
+
+.code
+    main:
+        lux     r3, msj1               # Load de la direccion de la variable fact
+                                       # Carga la direccion de la hilera
+                                       # en el registro de parametro
+        addi    r1, r0, 1              # Se carga el flag 1 para imprimir por pantalla
+        syscall                        # Llama la interrupcion y segun el flag realiza lo que se espera
+
+        addi    r1, r0, 2              # Se carga el flag 2 para recibir entrada de usuario
+        syscall                        # Llama la interrupcion y segun el flag realiza lo que se espera
+
+        addi    r4, r0, r0             # Resultado sum
+        addi    r5, r0, r0             # Indice i
+    ciclo:
+        addi    r5, r5, 1              # i = i + 1
+        add     r4, r5, r4             # sum = sum + i
+        jls     ciclo, r5, r2          # hace otro ciclo
+
+        lux     r3, respuesta               # Load de la direccion de la variable fact
+                                       # Carga la direccion de la hilera
+                                       # en el registro de parametro
+        addi    r1, r0, 1              # Se carga el flag 1 para imprimir por pantalla
+        syscall                        # Llama la interrupcion y segun el flag realiza lo que se espera
+
+
+        addi    r3, 0, r4
+        addi    r1, r0, 1              # Se carga el flag 1 para imprimir por pantalla
+        syscall                        # Llama la interrupcion y segun el flag realiza lo que se espera
+        ret
+#-------------------------------------------------------------------------------
