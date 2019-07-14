@@ -34,12 +34,12 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\020\000\002\007\004\000\002\002\004\000\002\007" +
+    "\000\021\000\002\007\004\000\002\002\004\000\002\007" +
     "\003\000\002\002\003\000\002\002\003\000\002\002\003" +
     "\000\002\003\004\000\002\003\003\000\002\004\003\000" +
     "\002\004\005\000\002\010\003\000\002\010\003\000\002" +
-    "\005\003\000\002\005\005\000\002\006\003\000\002\006" +
-    "\003" });
+    "\010\003\000\002\005\003\000\002\005\005\000\002\006" +
+    "\003\000\002\006\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -47,28 +47,29 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\025\000\012\005\006\007\011\010\007\013\010\001" +
+    "\000\026\000\012\005\006\007\011\010\007\013\010\001" +
     "\002\000\014\002\ufffe\005\ufffe\007\ufffe\010\ufffe\013\ufffe" +
-    "\001\002\000\014\002\027\005\006\007\011\010\007\013" +
-    "\010\001\002\000\020\002\ufffa\005\ufffa\006\020\007\ufffa" +
-    "\010\ufffa\013\ufffa\014\021\001\002\000\014\002\ufff5\005" +
-    "\ufff5\007\ufff5\010\ufff5\013\ufff5\001\002\000\004\012\014" +
-    "\001\002\000\014\002\ufffc\005\ufffc\007\ufffc\010\ufffc\013" +
-    "\ufffc\001\002\000\014\002\uffff\005\uffff\007\uffff\010\uffff" +
-    "\013\uffff\001\002\000\014\002\ufffd\005\ufffd\007\ufffd\010" +
-    "\ufffd\013\ufffd\001\002\000\006\006\015\011\016\001\002" +
-    "\000\014\002\ufff2\005\ufff2\007\ufff2\010\ufff2\013\ufff2\001" +
-    "\002\000\014\002\ufff3\005\ufff3\007\ufff3\010\ufff3\013\ufff3" +
-    "\001\002\000\014\002\ufff4\005\ufff4\007\ufff4\010\ufff4\013" +
-    "\ufff4\001\002\000\016\002\ufff7\004\ufff7\005\ufff7\007\ufff7" +
-    "\010\ufff7\013\ufff7\001\002\000\016\002\ufff6\004\ufff6\005" +
-    "\ufff6\007\ufff6\010\ufff6\013\ufff6\001\002\000\014\002\ufffb" +
-    "\005\ufffb\007\ufffb\010\ufffb\013\ufffb\001\002\000\016\002" +
-    "\ufff9\004\024\005\ufff9\007\ufff9\010\ufff9\013\ufff9\001\002" +
-    "\000\006\006\020\014\021\001\002\000\014\002\ufff8\005" +
-    "\ufff8\007\ufff8\010\ufff8\013\ufff8\001\002\000\014\002\001" +
-    "\005\001\007\001\010\001\013\001\001\002\000\004\002" +
-    "\000\001\002" });
+    "\001\002\000\014\002\030\005\006\007\011\010\007\013" +
+    "\010\001\002\000\022\002\ufffa\005\ufffa\006\021\007\ufffa" +
+    "\010\ufffa\013\ufffa\014\022\015\020\001\002\000\014\002" +
+    "\ufff4\005\ufff4\007\ufff4\010\ufff4\013\ufff4\001\002\000\004" +
+    "\012\014\001\002\000\014\002\ufffc\005\ufffc\007\ufffc\010" +
+    "\ufffc\013\ufffc\001\002\000\014\002\uffff\005\uffff\007\uffff" +
+    "\010\uffff\013\uffff\001\002\000\014\002\ufffd\005\ufffd\007" +
+    "\ufffd\010\ufffd\013\ufffd\001\002\000\006\006\015\011\016" +
+    "\001\002\000\014\002\ufff1\005\ufff1\007\ufff1\010\ufff1\013" +
+    "\ufff1\001\002\000\014\002\ufff2\005\ufff2\007\ufff2\010\ufff2" +
+    "\013\ufff2\001\002\000\014\002\ufff3\005\ufff3\007\ufff3\010" +
+    "\ufff3\013\ufff3\001\002\000\016\002\ufff5\004\ufff5\005\ufff5" +
+    "\007\ufff5\010\ufff5\013\ufff5\001\002\000\016\002\ufff7\004" +
+    "\ufff7\005\ufff7\007\ufff7\010\ufff7\013\ufff7\001\002\000\016" +
+    "\002\ufff6\004\ufff6\005\ufff6\007\ufff6\010\ufff6\013\ufff6\001" +
+    "\002\000\014\002\ufffb\005\ufffb\007\ufffb\010\ufffb\013\ufffb" +
+    "\001\002\000\016\002\ufff9\004\025\005\ufff9\007\ufff9\010" +
+    "\ufff9\013\ufff9\001\002\000\010\006\021\014\022\015\020" +
+    "\001\002\000\014\002\ufff8\005\ufff8\007\ufff8\010\ufff8\013" +
+    "\ufff8\001\002\000\014\002\001\005\001\007\001\010\001" +
+    "\013\001\001\002\000\004\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -76,15 +77,15 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\025\000\012\002\011\003\003\005\012\007\004\001" +
-    "\001\000\002\001\001\000\010\002\025\003\003\005\012" +
-    "\001\001\000\006\004\021\010\022\001\001\000\002\001" +
+    "\000\026\000\012\002\011\003\003\005\012\007\004\001" +
+    "\001\000\002\001\001\000\010\002\026\003\003\005\012" +
+    "\001\001\000\006\004\022\010\023\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\004\006\016\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\006\004\024\010\022\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001" });
+    "\002\001\001\000\006\004\025\010\023\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -320,7 +321,20 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // declaration ::= label 
+          case 12: // parameter ::= tag 
+            {
+                XMLElement RESULT;
+		Location tag0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location tag0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object tag0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+
+                RESULT = new XMLElement.NonTerminal("parameter",2);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // declaration ::= label 
             {
                 XMLElement RESULT;
 		Location label0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
@@ -333,7 +347,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // declaration ::= variable types value 
+          case 14: // declaration ::= variable types value 
             {
                 XMLElement RESULT;
 		Location variable0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
@@ -352,7 +366,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // value ::= string 
+          case 15: // value ::= string 
             {
                 XMLElement RESULT;
 		Location string0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
@@ -365,7 +379,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // value ::= immediate 
+          case 16: // value ::= immediate 
             {
                 XMLElement RESULT;
 		Location immediate0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;

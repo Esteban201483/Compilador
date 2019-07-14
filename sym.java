@@ -17,6 +17,7 @@ public interface sym {
   public static final int error = 1;
   public static final int label = 6;
   public static final int register = 10;
+  public static final int tag = 11;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -28,7 +29,8 @@ public interface sym {
   "string",
   "types",
   "variable",
-  "register"
+  "register",
+  "tag"
   };
 }
 

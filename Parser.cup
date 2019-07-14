@@ -24,14 +24,36 @@ import java.io.*;
 */
 
 non terminal expression,instruction, parameters, declaration, value, program, parameter;
-terminal separator, operation,immediate, segment, label, string, types, variable, register;
+terminal separator, operation,immediate, segment, label, string, types, variable, register, tag;
 
-program ::= program expression | expression;
-expression  ::= instruction | declaration | segment;
-instruction ::= operation parameters | operation;
-parameters  ::= parameter | parameter separator parameters;
-parameter   ::= immediate | register;
-declaration ::= label | variable types value;
+program ::= program expression 
+	| expression
+	;
 
-value       ::= string | immediate;
+expression  ::= instruction 
+	| declaration 
+	| segment
+	;
+
+
+instruction ::= operation parameters 
+	| operation
+	;
+
+parameters  ::= parameter 
+	| parameter separator parameters
+	;
+
+parameter   ::= immediate 
+	| register 
+	| tag
+	;
+
+declaration ::= label 
+	| variable types value
+	;
+
+value       ::= string 
+	| immediate
+	;
 

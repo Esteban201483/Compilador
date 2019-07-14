@@ -7,6 +7,7 @@ import java_cup.runtime.*;
 %class Lexer
 %unicode
 %cup 
+%implements sym
 %line
 %column
 %cupdebug
@@ -35,6 +36,12 @@ import java_cup.runtime.*;
   return symbol(sym.EOF);
 %eofval}
 
+%init{
+	yybegin( DATA );
+%init}
+
+%state DATA,CODE
+
 
 string = \"[^\"]*\"
 comment = #(.)*
@@ -48,23 +55,46 @@ segment = ((\.data)|(\.code))
 label = ([a-zA-z][a-zA-Z0-9]*:)
 variable = [a-zA-Z][a-zA-Z0-9]*
 
-operation = (add|addi|ciclo|jls|lux|ret|syscall)
+operation = (add|addi|jls|lux|ret|syscall)
 
 %%
 
-{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
-{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
-{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
-{segment} {System.out.println("Segmento Detectado: " + yytext());return symbol(sym.segment);}
-{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
-{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
-{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
-{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.variable);}
-{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
-{comment} {/*Ignores*/}
-{spaces} {/*Ignores*/}
-{endLine} {/*Ignores*/}
-. {/*Ignores*/}
+<DATA>
+{
+	//{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
+	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
+	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
+	{segment} {
+				System.out.println("Segmento Detectado: " + yytext());
+				yybegin( CODE );
+				return symbol(sym.segment);}
+				
+	{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
+	//{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
+	//{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
+	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.variable);}
+	{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
+	{comment} {/*Ignores*/}
+	{spaces} {/*Ignores*/}
+	{endLine} {/*Ignores*/}
+}
+<CODE>
+{
+	{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
+	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
+	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
+	//{segment} {System.out.println("Segmento Detectado: " + yytext());return symbol(sym.segment);}
+	//{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
+	{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
+	{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
+	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.tag);}
+	//{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
+	{comment} {/*Ignores*/}
+	{spaces} {/*Ignores*/}
+	{endLine} {/*Ignores*/}
+}
+
+
 
 
 
