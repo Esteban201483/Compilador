@@ -10,11 +10,11 @@ parser code {:
 	OutputWriter out;
 	BinaryGenerator bin; 
 	 
-	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename) {
+	public Parser(Lexer lex, ComplexSymbolFactory sf, String filename, BinaryGenerator bg) {
 		super(lex,sf);
 		
 		out = new OutputWriter(filename);
-		bin = new BinaryGenerator();
+		bin = bg;
 
 	}
 :}
@@ -22,7 +22,7 @@ parser code {:
 non terminal expression,instruction, parameters, declaration, program, parameter;
 terminal separator, operation,immediate, segment, label, string, types, variable, register, tag;
 
-program ::= program expression 
+program ::= program expression {: :}
 	| expression 
 	;
 
@@ -37,7 +37,7 @@ instruction ::= operation parameters
 	;
 
 parameters  ::= parameter 
-	| parameter separator parameters
+	| parameter:param separator:sep parameters:params
 	;
 
 parameter   ::= immediate 
@@ -46,8 +46,8 @@ parameter   ::= immediate
 	;
 
 declaration ::= label:l {: System.out.println("Label detectado por cup: " + l);:}
-	| variable:var types:typ string:str {:out.writeLine(bin.convertStringToBinary((String)str));:}
-	| variable:var types:typ immediate:imm {:out.writeLine(bin.ConvertWordToBinary((Integer.parseInt((String)imm)), (String)typ));:}
+	| variable:var types:typ string:str {:out.writeLine(bin.convertStringToBinary((String)str, (String)var));:}
+	| variable:var types:typ immediate:imm {:out.writeLine(bin.ConvertWordToBinary((Integer.parseInt((String)imm)), (String)typ, (String)var)) ;:}
 	;
 
 

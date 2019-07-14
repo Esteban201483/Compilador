@@ -3,12 +3,20 @@ import java.util.HashMap;
 public class BinaryGenerator
 {
 	HashMap<String,String> instructions;
-	int byteCounter; //used to calculate padding in data section
+	HashMap<String,Integer> symbolTable;
+	
+	int byteCounter; //used to calculate padding in data section and offset when using a variable
+	int stackSize; //Used to calculate directions
+	int memorySize;
 	
 	public BinaryGenerator()
 	{
 		byteCounter = 0;
+		stackSize = 128;
+		memorySize = 32;
+		
 		instructions = new HashMap<String,String>();
+		symbolTable = new HashMap<String,Integer>();
 
 		//Fills the instructions
 		instructions.put("add","00000");
@@ -54,7 +62,7 @@ public class BinaryGenerator
 		return binary;
 	}
 	
-	public String convertStringToBinary(String string)
+	public String convertStringToBinary(String string, String varName)
 	{
 		String binary = "";
 		
@@ -71,20 +79,23 @@ public class BinaryGenerator
 			}
 		}
 		
+		symbolTable.put(varName, new Integer(byteCounter));
 		byteCounter += string.replace("\\","").length() -2; //quotes
 		return binary;
 	}
 	
-	public String ConvertWordToBinary(int immediate, String wordType)
+	public String ConvertWordToBinary(int immediate, String wordType, String varName)
 	{
 		String binary = "";
 		
-		int size = 64;
+		int size = 64; //dword by default
 		
 		if(wordType.equals("word"))
 			size = 32;
 		
 		binary = convertIntToBinary(immediate,size);
+		symbolTable.put(varName, new Integer(byteCounter));
+		
 		byteCounter += size/8;
 		return binary;
 	}
@@ -98,5 +109,22 @@ public class BinaryGenerator
 			padding+="0";
 		
 		return padding;
+	}
+	
+	public String getVariableOffset(String varName)
+	{
+		String offset = "";
+		
+		offset = convertIntToBinary(symbolTable.get(varName),memorySize); 
+		
+		return offset;
+	}
+	
+	public void printSymbolTable()
+	{
+		for (String variable : symbolTable.keySet()) 
+		{
+		  System.out.println("Variable: " + variable + " Offset: " + symbolTable.get(variable));
+		}
 	}
 }

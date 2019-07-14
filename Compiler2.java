@@ -19,8 +19,10 @@ public class Compiler2
 		  
 		  
 		  ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory();
-          Parser parser = new Parser(new Lexer(reader,symbolFactory),symbolFactory,filename);
+		  BinaryGenerator bin = new BinaryGenerator();
+          Parser parser = new Parser(new Lexer(reader,symbolFactory),symbolFactory,filename,bin);
 		  parser.parse();
+		  
 
 		  System.out.println("Compiling finished.");
         }
