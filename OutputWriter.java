@@ -19,8 +19,7 @@ public class OutputWriter
 	}
 	
 	public void writeLine(String newLine)
-	{
-		
+	{	
 		try
 		{
 			writer.write(newLine + "\n");
@@ -31,6 +30,19 @@ public class OutputWriter
 			System.out.println("Error: file can't be writed");
 		}
 		
+	}
+	
+	public void write(String text)
+	{	
+		try
+		{
+			writer.write(text);
+			writer.flush();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error: file can't be writed");
+		}
 		
 	}
 	

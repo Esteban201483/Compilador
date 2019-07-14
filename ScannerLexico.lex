@@ -55,7 +55,7 @@ segment = ((\.data)|(\.code))
 label = ([a-zA-z][a-zA-Z0-9]*:)
 variable = [a-zA-Z][a-zA-Z0-9]*
 
-operation = (add|addi|jls|lux|ret|syscall)
+operation = (add|addi|jleu|jls|lux|mul|ret|syscall|sw)
 
 %%
 
@@ -66,7 +66,8 @@ operation = (add|addi|jls|lux|ret|syscall)
 	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
 	{segment} {
 				System.out.println("Segmento Detectado: " + yytext());
-				yybegin( CODE );
+				if(yytext().equals(".code"))
+					yybegin( CODE );
 				return symbol(sym.segment);}
 				
 	{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
@@ -77,6 +78,7 @@ operation = (add|addi|jls|lux|ret|syscall)
 	{comment} {/*Ignores*/}
 	{spaces} {/*Ignores*/}
 	{endLine} {/*Ignores*/}
+	. {System.out.println("Input no reconocido: " + yytext());}
 }
 <CODE>
 {
@@ -92,6 +94,7 @@ operation = (add|addi|jls|lux|ret|syscall)
 	{comment} {/*Ignores*/}
 	{spaces} {/*Ignores*/}
 	{endLine} {/*Ignores*/}
+	. {System.out.println("Input no reconocido: " + yytext());}
 }
 
 

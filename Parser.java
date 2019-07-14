@@ -34,12 +34,12 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\021\000\002\007\004\000\002\002\004\000\002\007" +
+    "\000\020\000\002\006\004\000\002\002\004\000\002\006" +
     "\003\000\002\002\003\000\002\002\003\000\002\002\003" +
     "\000\002\003\004\000\002\003\003\000\002\004\003\000" +
-    "\002\004\005\000\002\010\003\000\002\010\003\000\002" +
-    "\010\003\000\002\005\003\000\002\005\005\000\002\006" +
-    "\003\000\002\006\003" });
+    "\002\004\005\000\002\007\003\000\002\007\003\000\002" +
+    "\007\003\000\002\005\003\000\002\005\005\000\002\005" +
+    "\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -47,29 +47,28 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\026\000\012\005\006\007\011\010\007\013\010\001" +
+    "\000\025\000\012\005\006\007\011\010\007\013\010\001" +
     "\002\000\014\002\ufffe\005\ufffe\007\ufffe\010\ufffe\013\ufffe" +
-    "\001\002\000\014\002\030\005\006\007\011\010\007\013" +
-    "\010\001\002\000\022\002\ufffa\005\ufffa\006\021\007\ufffa" +
-    "\010\ufffa\013\ufffa\014\022\015\020\001\002\000\014\002" +
+    "\001\002\000\014\002\027\005\006\007\011\010\007\013" +
+    "\010\001\002\000\022\002\ufffa\005\ufffa\006\020\007\ufffa" +
+    "\010\ufffa\013\ufffa\014\021\015\017\001\002\000\014\002" +
     "\ufff4\005\ufff4\007\ufff4\010\ufff4\013\ufff4\001\002\000\004" +
     "\012\014\001\002\000\014\002\ufffc\005\ufffc\007\ufffc\010" +
     "\ufffc\013\ufffc\001\002\000\014\002\uffff\005\uffff\007\uffff" +
     "\010\uffff\013\uffff\001\002\000\014\002\ufffd\005\ufffd\007" +
     "\ufffd\010\ufffd\013\ufffd\001\002\000\006\006\015\011\016" +
-    "\001\002\000\014\002\ufff1\005\ufff1\007\ufff1\010\ufff1\013" +
-    "\ufff1\001\002\000\014\002\ufff2\005\ufff2\007\ufff2\010\ufff2" +
-    "\013\ufff2\001\002\000\014\002\ufff3\005\ufff3\007\ufff3\010" +
-    "\ufff3\013\ufff3\001\002\000\016\002\ufff5\004\ufff5\005\ufff5" +
-    "\007\ufff5\010\ufff5\013\ufff5\001\002\000\016\002\ufff7\004" +
-    "\ufff7\005\ufff7\007\ufff7\010\ufff7\013\ufff7\001\002\000\016" +
-    "\002\ufff6\004\ufff6\005\ufff6\007\ufff6\010\ufff6\013\ufff6\001" +
-    "\002\000\014\002\ufffb\005\ufffb\007\ufffb\010\ufffb\013\ufffb" +
-    "\001\002\000\016\002\ufff9\004\025\005\ufff9\007\ufff9\010" +
-    "\ufff9\013\ufff9\001\002\000\010\006\021\014\022\015\020" +
-    "\001\002\000\014\002\ufff8\005\ufff8\007\ufff8\010\ufff8\013" +
-    "\ufff8\001\002\000\014\002\001\005\001\007\001\010\001" +
-    "\013\001\001\002\000\004\002\000\001\002" });
+    "\001\002\000\014\002\ufff2\005\ufff2\007\ufff2\010\ufff2\013" +
+    "\ufff2\001\002\000\014\002\ufff3\005\ufff3\007\ufff3\010\ufff3" +
+    "\013\ufff3\001\002\000\016\002\ufff5\004\ufff5\005\ufff5\007" +
+    "\ufff5\010\ufff5\013\ufff5\001\002\000\016\002\ufff7\004\ufff7" +
+    "\005\ufff7\007\ufff7\010\ufff7\013\ufff7\001\002\000\016\002" +
+    "\ufff6\004\ufff6\005\ufff6\007\ufff6\010\ufff6\013\ufff6\001\002" +
+    "\000\014\002\ufffb\005\ufffb\007\ufffb\010\ufffb\013\ufffb\001" +
+    "\002\000\016\002\ufff9\004\024\005\ufff9\007\ufff9\010\ufff9" +
+    "\013\ufff9\001\002\000\010\006\020\014\021\015\017\001" +
+    "\002\000\014\002\ufff8\005\ufff8\007\ufff8\010\ufff8\013\ufff8" +
+    "\001\002\000\014\002\001\005\001\007\001\010\001\013" +
+    "\001\001\002\000\004\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -77,15 +76,15 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\026\000\012\002\011\003\003\005\012\007\004\001" +
-    "\001\000\002\001\001\000\010\002\026\003\003\005\012" +
-    "\001\001\000\006\004\022\010\023\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\006\016\001\001\000\002\001" +
+    "\000\025\000\012\002\011\003\003\005\012\006\004\001" +
+    "\001\000\002\001\001\000\010\002\025\003\003\005\012" +
+    "\001\001\000\006\004\021\007\022\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\006\004\025\010\023\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001" });
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\004" +
+    "\024\007\022\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -173,7 +172,7 @@ class CUP$Parser$actions {
 		Object expression1 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
                 RESULT = new XMLElement.NonTerminal("program",0);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("program",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("program",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
@@ -204,7 +203,7 @@ class CUP$Parser$actions {
 		Object expression0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
                 RESULT = new XMLElement.NonTerminal("program",1);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("program",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("program",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
@@ -238,11 +237,11 @@ class CUP$Parser$actions {
           case 5: // expression ::= segment 
             {
                 XMLElement RESULT;
-		Location segment0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location segment0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object segment0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("expression",2);
+		Location segxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location segxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object seg = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 if(((String)seg).equals(".code")){out.writeLine(bin.getPadding());} 
+                RESULT = new XMLElement.NonTerminal("expression",2,new XMLElement.Terminal(segxleft,"seg",seg,segxright));
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expression",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -317,7 +316,7 @@ class CUP$Parser$actions {
 		Object immediate0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
                 RESULT = new XMLElement.NonTerminal("parameter",0);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
@@ -325,12 +324,12 @@ class CUP$Parser$actions {
           case 11: // parameter ::= register 
             {
                 XMLElement RESULT;
-		Location register0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location register0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object register0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("parameter",1);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+		Location regxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location regxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object reg = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 System.out.println("Binario Registro: " + bin.getRegisterBinary((String)reg)); 
+                RESULT = new XMLElement.NonTerminal("parameter",1,new XMLElement.Terminal(regxleft,"reg",reg,regxright));
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
@@ -343,7 +342,7 @@ class CUP$Parser$actions {
 		Object tag0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
                 RESULT = new XMLElement.NonTerminal("parameter",2);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("parameter",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
@@ -361,47 +360,40 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // declaration ::= variable types value 
+          case 14: // declaration ::= variable types string 
             {
                 XMLElement RESULT;
-		Location variable0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
-		Location variable0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
-		Object variable0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		Location types1xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
-		Location types1xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
-		Object types1 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		Location value2xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location value2xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object value2 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("declaration",1);
+		Location varxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
+		Location varxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
+		Object var = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		Location typxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
+		Location typxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
+		Object typ = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Location strxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location strxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object str = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		out.writeLine(bin.convertStringToBinary((String)str));
+                RESULT = new XMLElement.NonTerminal("declaration",1,new XMLElement.Terminal(varxleft,"var",var,varxright),new XMLElement.Terminal(typxleft,"typ",typ,typxright),new XMLElement.Terminal(strxleft,"str",str,strxright));
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declaration",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // value ::= string 
+          case 15: // declaration ::= variable types immediate 
             {
                 XMLElement RESULT;
-		Location string0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location string0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object string0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("value",0);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("value",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
-            }
-          return CUP$Parser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // value ::= immediate 
-            {
-                XMLElement RESULT;
-		Location immediate0xleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
-		Location immediate0xright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
-		Object immediate0 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-
-                RESULT = new XMLElement.NonTerminal("value",1);
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("value",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+		Location varxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xleft;
+		Location varxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).xright;
+		Object var = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		Location typxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
+		Location typxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
+		Object typ = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		Location immxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xleft;
+		Location immxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.peek()).xright;
+		Object imm = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		out.writeLine(bin.ConvertWordToBinary((Integer.parseInt((String)imm)), (String)typ));
+                RESULT = new XMLElement.NonTerminal("declaration",2,new XMLElement.Terminal(varxleft,"var",var,varxright),new XMLElement.Terminal(typxleft,"typ",typ,typxright),new XMLElement.Terminal(immxleft,"imm",imm,immxright));
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("declaration",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 

@@ -19,7 +19,7 @@ parser code {:
 	}
 :}
 
-non terminal expression,instruction, parameters, declaration, value, program, parameter;
+non terminal expression,instruction, parameters, declaration, program, parameter;
 terminal separator, operation,immediate, segment, label, string, types, variable, register, tag;
 
 program ::= program expression 
@@ -28,7 +28,7 @@ program ::= program expression
 
 expression  ::= instruction 
 	| declaration 
-	| segment
+	| segment:seg {: if(((String)seg).equals(".code")){out.writeLine(bin.getPadding());} :}
 	;
 
 
@@ -41,15 +41,14 @@ parameters  ::= parameter
 	;
 
 parameter   ::= immediate 
-	| register 
+	| register:reg {: System.out.println("Binario Registro: " + bin.getRegisterBinary((String)reg)); :}
 	| tag
 	;
 
 declaration ::= label:l {: System.out.println("Label detectado por cup: " + l);:}
-	| variable types value
+	| variable:var types:typ string:str {:out.writeLine(bin.convertStringToBinary((String)str));:}
+	| variable:var types:typ immediate:imm {:out.writeLine(bin.ConvertWordToBinary((Integer.parseInt((String)imm)), (String)typ));:}
 	;
 
-value	::= string 
-	| immediate
-	;
+
 
