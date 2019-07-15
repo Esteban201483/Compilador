@@ -135,6 +135,20 @@ public class Parser extends java_cup.runtime.lr_parser {
 		bin = bg;
 
 	}
+	
+	private String fillZeros(String s)
+	{
+		int n = s.replace(" ","").length();
+		
+		if(n != 0)
+		{
+			s+=" ";		
+			for(; n < 32; ++n)
+				s+="0";
+		}
+		
+		return s;
+	}
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -230,7 +244,8 @@ class CUP$Parser$actions {
 		Location opxleft = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xleft;
 		Location opxright = ((java_cup.runtime.ComplexSymbolFactory.ComplexSymbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).xright;
 		Object op = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		 out.writeLine(bin.getOperationBinary((String)op) + " " + actualLine); actualLine=""; 
+		 actualLine = bin.getOperationBinary((String)op) + " " + actualLine;
+		actualLine=fillZeros(actualLine);out.writeLine(actualLine); actualLine=""; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruction",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

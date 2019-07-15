@@ -18,6 +18,20 @@ parser code {:
 		bin = bg;
 
 	}
+	
+	private String fillZeros(String s)
+	{
+		int n = s.replace(" ","").length();
+		
+		if(n != 0)
+		{
+			s+=" ";		
+			for(; n < 32; ++n)
+				s+="0";
+		}
+		
+		return s;
+	}
 :}
 
 non terminal expression,instruction, parameters, declaration, program, parameter;
@@ -33,7 +47,8 @@ expression  ::= instruction
 	;
 
 
-instruction ::= operation: op parameters {: out.writeLine(bin.getOperationBinary((String)op) + " " + actualLine); actualLine=""; :}
+instruction ::= operation: op parameters {: actualLine = bin.getOperationBinary((String)op) + " " + actualLine;
+		actualLine=fillZeros(actualLine);out.writeLine(actualLine); actualLine=""; :}
 	| operation: op {: out.writeLine(bin.getOperationBinary((String)op)); :}
 	;
 
