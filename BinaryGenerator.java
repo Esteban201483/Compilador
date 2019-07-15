@@ -117,16 +117,43 @@ public class BinaryGenerator
 	{
 		String binary = "";
 		
+		boolean isSpecial = false;
+		
 		for(int c = 0; c < string.length(); ++c)
 		{
-			if(string.charAt(c) != '\"')
+			char character = string.charAt(c);
+			if(character != '\"')
 			{
-				binary += convertIntToBinary((int)(string.charAt(c)),8);
+				if(!isSpecial)
+				{
+					if(character=='\\') //Then it will be \0 or \n
+					{
+						isSpecial = true;
+						//Expects an 0 or n
+					}
+					else
+					{
+						binary += convertIntToBinary((int)(character),8); //Normal convertion
+					}
+				}
+				else
+				{
+					switch(character)
+					{
+						case '0':
+							binary += convertIntToBinary(0,8); 
+							break;
+						case 'n':
+							binary += convertIntToBinary(13,8);
+							break;
+						default:
+							System.out.println("Warnings: Special character \\" + character + " not recognized");
+							break;
+					}
+					isSpecial = false;
+				}
 				
-				/*System.out.println("Valuee: " + Character.getNumericValue(string.charAt(c)));
-				System.out.println("Char: " + string.charAt(c));
-				System.out.println("Bin: " + convertIntToBinary((int)(string.charAt(c)),8));*/
-				
+
 			}
 		}
 		
