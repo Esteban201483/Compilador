@@ -80,12 +80,22 @@ public class BinaryGenerator
 		System.out.println("BinaryGenerator Up");
 	}
 	
+	/**
+	* Obtains the binary code of the operation
+	* @param String operation The operation which binary code is required.
+	* @returns the binary code of the operation.
+	*/
 	public String getOperationBinary(String operation)
 	{
 		return instructions.get(operation);
 	}
 	
 
+	/**
+	* Converts a register value into binary representation
+	* @param String register: The register to convert
+	* @returns The Binary representation of the register.
+	*/
 	public String getRegisterBinary(String register)
 	{
 		String binary = "";
@@ -101,6 +111,12 @@ public class BinaryGenerator
 		return "Immediate";
 	}
 	
+	/**
+	* Convert an int to binary representation and fill with zeros to fulfill the required bits
+	* @param int value: The int value to convert 
+	* @param int bits: indicates how many bits are spected.
+	* @returns binary representation of the int, with the ammount of bits expected.
+	*/
 	public String convertIntToBinary(int value, int bits)
 	{
 		String binary = "";
@@ -113,11 +129,18 @@ public class BinaryGenerator
 		return binary;
 	}
 	
+	
+	/**
+	* Converts a String into binary representation and stores the string's name in the symbol table. Ignores quotes.
+	* @param String string: The string to convert
+	* @param String varName: The name of the variable
+	* @return: The binary representation of the string
+	*/
 	public String convertStringToBinary(String string, String varName)
 	{
 		String binary = "";
 		
-		boolean isSpecial = false;
+		boolean isSpecial = false; //Used to detecte \0 and \n as single characters
 		
 		for(int c = 0; c < string.length(); ++c)
 		{
@@ -152,16 +175,21 @@ public class BinaryGenerator
 					}
 					isSpecial = false;
 				}
-				
-
 			}
 		}
 		
 		symbolTable.put(varName, new Integer(byteCounter));
-		byteCounter += string.replace("\\","").length() -2; //quotes
+		byteCounter += string.replace("\\","").length() -2; //Ignores start and end quotes
 		return binary;
 	}
 	
+	/**
+	* Stores a word or dword variable in the symbol table.
+	* @param int immediate: the value of the variable.
+	* @param String wordType: word or dword.
+	* @param String varName: the name of the variable. 
+	* @returns Binary representation of the immediate value
+	*/
 	public String ConvertWordToBinary(int immediate, String wordType, String varName)
 	{
 		String binary = "";
@@ -178,6 +206,11 @@ public class BinaryGenerator
 		return binary;
 	}
 	
+	
+	/**
+	* Creates ceros as padding to fill data section.
+	* @returns strings with ceros .
+	*/
 	public String getPadding()
 	{
 		String padding = "";
@@ -189,18 +222,28 @@ public class BinaryGenerator
 		return padding;
 	}
 	
+	/**
+	* Returns the respective offset value of the variable. Uses the Stack Segment size in the offset's calculation .
+	* @param String varName: The variable name.
+	* @returns: variable offset.
+	*/
 	public String getVariableOffset(String varName)
 	{
 		String offset = "";
 		
 		if(symbolTable.containsKey(varName))
-			offset = convertIntToBinary(symbolTable.get(varName),16); 
+			offset = convertIntToBinary(symbolTable.get(varName) + stackSize,16); 
 		else
 			System.out.println(">>>Warning: Tag:  " + varName + " not found" );
 		
 		return offset;
 	}
 	
+	
+	/**
+	* Prints all the symbols detected and their respective offset, ignoring stack segment.
+	*
+	*/
 	public void printSymbolTable()
 	{
 		for (String variable : symbolTable.keySet()) 
