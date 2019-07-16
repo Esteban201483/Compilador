@@ -743,53 +743,52 @@ public class Lexer implements java_cup.runtime.Scanner, sym {
             // fall through
           case 14: break;
           case 3: 
-            { System.out.println("Variable detectada: " + yytext());return symbol(sym.variable);
+            { return symbol(sym.variable);
             } 
             // fall through
           case 15: break;
           case 4: 
-            { System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);
+            { return symbol(sym.immediate);
             } 
             // fall through
           case 16: break;
           case 5: 
-            { System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);
+            { return symbol(sym.separator);
             } 
             // fall through
           case 17: break;
           case 6: 
-            { System.out.println("Variable detectada: " + yytext());return symbol(sym.tag);
+            { return symbol(sym.tag);
             } 
             // fall through
           case 18: break;
           case 7: 
-            { System.out.println("String Detectado: " + yytext());return symbol(sym.string);
+            { return symbol(sym.string);
             } 
             // fall through
           case 19: break;
           case 8: 
-            { System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);
+            { return symbol(sym.label);
             } 
             // fall through
           case 20: break;
           case 9: 
-            { System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);
+            { return symbol(sym.operation);
             } 
             // fall through
           case 21: break;
           case 10: 
-            { System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);
+            { return symbol(sym.register);
             } 
             // fall through
           case 22: break;
           case 11: 
-            { System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);
+            { return symbol(sym.types);
             } 
             // fall through
           case 23: break;
           case 12: 
-            { System.out.println("Segmento Detectado: " + yytext());
-				if(yytext().equals(".code"))
+            { if(yytext().equals(".code"))
 					yybegin( CODE );
 				return symbol(sym.segment);
             } 

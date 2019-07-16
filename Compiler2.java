@@ -1,12 +1,15 @@
 import java_cup.runtime.*;
 
+/**
+*This class calls the cup and flex classes to compile the source code
+*/
 public class Compiler2
 {
-	public Compiler2()
-	{
-		
-	}
-	
+
+	/**
+	* Compiles the source code file
+	* @param String filename The absolute path of the file
+	*/
 	public void compile(String filename)
 	{
 		System.out.println("Compiling: " + filename);

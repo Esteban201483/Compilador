@@ -1,5 +1,8 @@
 import java.util.HashMap;
 
+/**
+* This class stores symbols. Also contains every binary convertion required in the compiling process
+*/
 public class BinaryGenerator
 {
 	private HashMap<String,String> instructions;
@@ -82,8 +85,6 @@ public class BinaryGenerator
 		instructions.put("syscall","110110 " + "00000000000000000000000000");
 		instructions.put("xor","001110");
 		instructions.put("xori","001111");
-	
-		System.out.println("BinaryGenerator Up");
 	}
 	
 	/**
@@ -94,7 +95,6 @@ public class BinaryGenerator
 	public String getOperationBinary(String operation)
 	{
 		++instructionCounter;
-		System.out.println("Instruction Counter: " + instructionCounter);
 		return instructions.get(operation);
 	}
 	
