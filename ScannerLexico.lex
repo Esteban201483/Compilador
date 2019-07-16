@@ -63,17 +63,17 @@ operation = (add|and|andi|addi|call|div|divi|je|jges|jgeu|jgs|jgu|jles|jleu|jls|
 
 <DATA>
 {
-	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
-	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
+	{immediate} {return symbol(sym.immediate);}
+	{separator} {return symbol(sym.separator);}
 	{segment} {
-				System.out.println("Segmento Detectado: " + yytext());
+				
 				if(yytext().equals(".code"))
 					yybegin( CODE );
 				return symbol(sym.segment);}
 				
-	{types} {System.out.println("Tipo Detectado: " + yytext());return symbol(sym.types);}
-	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.variable);}
-	{string} {System.out.println("String Detectado: " + yytext());return symbol(sym.string);}
+	{types} {return symbol(sym.types);}
+	{variable} {return symbol(sym.variable);}
+	{string} {return symbol(sym.string);}
 	{comment} {/*Ignores*/}
 	{spaces} {/*Ignores*/}
 	{endLine} {/*Ignores*/}
@@ -81,12 +81,12 @@ operation = (add|and|andi|addi|call|div|divi|je|jges|jgeu|jgs|jgu|jles|jleu|jls|
 }
 <CODE>
 {
-	{registers} {System.out.println("Registro Detectado: " + yytext());return symbol(sym.register);}
-	{immediate} {System.out.println("Inmediato Detectado: " + yytext());return symbol(sym.immediate);}
-	{separator} {System.out.println("Separador Detectado: " + yytext());return symbol(sym.separator);}
-	{label} {System.out.println("Etiqueta Detectada: " + yytext());return symbol(sym.label);}
-	{operation} {System.out.println("Instruccion Detectada: " + yytext()); return symbol(sym.operation);}
-	{variable} {System.out.println("Variable detectada: " + yytext());return symbol(sym.tag);}
+	{registers} {return symbol(sym.register);}
+	{immediate} {return symbol(sym.immediate);}
+	{separator} {return symbol(sym.separator);}
+	{label} {return symbol(sym.label);}
+	{operation} {return symbol(sym.operation);}
+	{variable} {return symbol(sym.tag);}
 	{comment} {/*Ignores*/}
 	{spaces} {/*Ignores*/}
 	{endLine} {/*Ignores*/}

@@ -4,21 +4,27 @@ public class BinaryGenerator
 {
 	private HashMap<String,String> instructions;
 	private HashMap<String,Integer> symbolTable;
+	private HashMap<String,Integer> labelMap;
 	
 	private int byteCounter; //used to calculate padding in data section and offset when using a variable
 	private int stackSize; //Used to calculate directions
 	private int memorySize;
 	private int registerSize;
+	private int instructionCounter;
+	private int instructionSize;
 	
 	public BinaryGenerator()
 	{
 		byteCounter = 0;
+		instructionCounter = 0;
 		stackSize = 128;
 		memorySize = 32;
 		registerSize = 5;
+		instructionSize = 4; //Bytes
 		
 		instructions = new HashMap<String,String>();
 		symbolTable = new HashMap<String,Integer>();
+		labelMap = new HashMap<String,Integer>();
 
 		//Fills the hashmap of instructions
 		instructions.put("add","000000");
@@ -87,6 +93,8 @@ public class BinaryGenerator
 	*/
 	public String getOperationBinary(String operation)
 	{
+		++instructionCounter;
+		System.out.println("Instruction Counter: " + instructionCounter);
 		return instructions.get(operation);
 	}
 	
@@ -184,6 +192,15 @@ public class BinaryGenerator
 	}
 	
 	/**
+	* add a label into the label's map
+	* @param String labelName
+	*/
+	public void addLabel(String labelName)
+	{
+		labelMap.put(labelName.replace(":",""),new Integer(instructionCounter));
+	}
+	
+	/**
 	* Stores a word or dword variable in the symbol table.
 	* @param int immediate: the value of the variable.
 	* @param String wordType: word or dword.
@@ -224,8 +241,9 @@ public class BinaryGenerator
 	
 	/**
 	* Returns the respective offset value of the variable. Uses the Stack Segment size in the offset's calculation .
-	* @param String varName: The variable name.
-	* @returns: variable offset.
+	* Also handles labels, because the regex of labels and variables is equal
+	* @param String varName: The variable or label name.
+	* @returns: variable or label offset.
 	*/
 	public String getVariableOffset(String varName)
 	{
@@ -234,7 +252,10 @@ public class BinaryGenerator
 		if(symbolTable.containsKey(varName))
 			offset = convertIntToBinary(symbolTable.get(varName) + stackSize,16); 
 		else
-			System.out.println(">>>Warning: Tag:  " + varName + " not found" );
+			if(labelMap.containsKey(varName))
+				offset = convertIntToBinary((labelMap.get(varName) - instructionCounter)  * instructionSize,16); 
+			else
+				System.out.println(">>>Warning: Tag:  " + varName + " not found" );
 		
 		return offset;
 	}

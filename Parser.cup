@@ -61,7 +61,7 @@ parameter   ::= immediate :imm {: actualLine += (bin.convertIntToBinary(Integer.
 	| tag:t {: actualLine +=bin.getVariableOffset((String)t) + " "; :}
 	;
 
-declaration ::= label:l {: System.out.println("Label detectado por cup: " + l);:}
+declaration ::= label:l {: bin.addLabel((String)l);:}
 	| variable:var types:typ string:str {:out.writeLine(bin.convertStringToBinary((String)str, (String)var));:}
 	| variable:var types:typ immediate:imm {:out.writeLine(bin.ConvertWordToBinary((Integer.parseInt((String)imm)), (String)typ, (String)var)) ;:}
 	;
